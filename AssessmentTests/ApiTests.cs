@@ -38,7 +38,7 @@ namespace AssessmentTests
         [TestMethod]
         public async Task CallUnsecureApi_NoAuth_NotFound()
         {
-            string getValues = $"{baseUrl}/api/values/";
+            string getValues = $"{baseUrl}/api/values1";
             var expected = HttpStatusCode.NotFound;
 
             var response = await httpClient.GetAsync(getValues);
