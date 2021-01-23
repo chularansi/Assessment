@@ -36,6 +36,19 @@ namespace AssessmentTests
         }
 
         [TestMethod]
+        public async Task CallUnsecureApi_NoAuth_NotFound()
+        {
+            string getValues = $"{baseUrl}/api/values/";
+            var expected = HttpStatusCode.NotFound;
+
+            var response = await httpClient.GetAsync(getValues);
+
+            Assert.AreEqual(expected, response.StatusCode);
+
+            httpClient.Dispose();
+        }
+
+        [TestMethod]
         public async Task CallSecureApiRoot_WithToken_ResponseOk()
         {
             // Arrange
