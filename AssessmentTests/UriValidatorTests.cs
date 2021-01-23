@@ -69,6 +69,28 @@ namespace AssessmentTests
             Assert.AreEqual(result, false);
         }
 
-        
+        [TestMethod]
+        public void RegexRuleMethod_No1()
+        {
+            UriValidator validator = new UriValidator();
+            string[] aspRules = new[]{
+                @"@https://([\w-]+\.)*asp\.net\/logincallback" // literal regex rule	
+            };
+
+            var result = validator.Validate(@"https://www.asp.net/webapp/login", aspRules);
+            Assert.AreEqual(result, false);
+        }
+
+        [TestMethod]
+        public void RegexRuleMethod_No2()
+        {
+            UriValidator validator = new UriValidator();
+            string[] confirmitRules = new[]{
+                @"@https://([\w-]+\.)*confirmit\.com\/logincallback" // literal regex rule	
+            };
+
+            var result = validator.Validate(@"https://confirmit.com/logincallback", confirmitRules);
+            Assert.AreEqual(result, true);
+        }
     }
 }
