@@ -32,8 +32,6 @@ namespace AssessmentTests
             var response = await httpClient.GetAsync(getValues);
 
             Assert.AreEqual(expected, response.StatusCode);
-
-            httpClient.Dispose();
         }
 
         [TestMethod]
@@ -45,8 +43,6 @@ namespace AssessmentTests
             var response = await httpClient.GetAsync(getValues);
 
             Assert.AreEqual(expected, response.StatusCode);
-
-            httpClient.Dispose();
         }
 
         [TestMethod]
@@ -61,8 +57,6 @@ namespace AssessmentTests
             var response = await httpClient.GetAsync(getValues);
 
             Assert.AreEqual(expected, response.StatusCode);
-
-            httpClient.Dispose();
         }
 
         [TestMethod]
@@ -77,8 +71,6 @@ namespace AssessmentTests
             var response = await httpClient.GetAsync(getValues);
 
             Assert.AreEqual(expected, response.StatusCode);
-
-            httpClient.Dispose();
         }
 
         [TestMethod]
@@ -88,12 +80,16 @@ namespace AssessmentTests
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             string getValues = $"{baseUrl}/api/securevalues";
-            var expected = HttpStatusCode.OK;
+            var expected = HttpStatusCode.Unauthorized;
 
             var response = await httpClient.GetAsync(getValues);
 
             Assert.AreEqual(expected, response.StatusCode);
+        }
 
+        [ClassCleanup]
+        public static void ClassClean()
+        {
             httpClient.Dispose();
         }
     }

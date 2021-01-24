@@ -15,7 +15,6 @@ namespace Api
 {
     public class Startup
     {
-        //public const string AuthAuthorityUri = "http://localhost:65179";
         public const string AuthAuthorityUri = "https://demo.identityserver.io";
 
         public const string AuthAudience = "api";
@@ -30,11 +29,6 @@ namespace Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddIdentityServer()
-            //    .AddDeveloperSigningCredential()        //This is for dev only scenarios when you don’t have a certificate to use.
-            //    .AddInMemoryApiScopes(Config.ApiScopes)
-            //    .AddInMemoryClients(Config.Clients);
-
             services.AddAuthentication(options =>
                 {
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -58,7 +52,6 @@ namespace Api
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseIdentityServer();
             app.UseRouting();
 
             app.UseAuthentication();
